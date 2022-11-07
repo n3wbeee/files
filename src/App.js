@@ -1,29 +1,29 @@
-import { render } from "@testing-library/react";
+/** @format */
+
 import React from "react";
 
-function HelloClick() {
-	function clickHandler() {
-		window.alert("事件触发");
+//阻止默认事件行为
+function Link() {
+	function handleClick(e) {
+		e.preventDefault(); //阻止默认事件行为
+		console.log("The link was clicked."); //打印日志
 	}
-	return <div onClick = { clickHandler }>Hello~</div>
-}
-
-class HelloComponent extends React.Component {
-	clickHandler = ()=> {
-		window.alert("类组件事件触发");
-	}
-	render() {
-		return <div onClick = { this.clickHandler }>ClassComponent</div>
-	}
+	return (
+		<div>
+			<a onClick={handleClick} href="https://www.baidu.com">
+				百度
+			</a>
+		</div>
+	);
 }
 
 function App() {
-  	return (
-    	<div>
-			<HelloClick/>
-			<HelloComponent/>
-    	</div>
-  	);
+	return (
+		<div>
+			<Link />
+		</div>
+	);
 }
 
 export default App;
+
