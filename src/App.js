@@ -2,19 +2,12 @@
 
 import React from "react";
 
-//阻止默认事件行为
+//显示message
 function Link() {
-	function handleClick(e) {
-		e.preventDefault(); //阻止默认事件行为
-		console.log("The link was clicked."); //打印日志
-	}
-	return (
-		<div>
-			<a onClick={handleClick} href="https://www.baidu.com">
-				百度
-			</a>
-		</div>
-	);
+	const clickHandler = (msg) => {
+		console.log(msg); //打印msg
+	};
+	return <div onClick={() => clickHandler("Test Message")}>打印Message</div>;
 }
 
 function App() {
