@@ -1,17 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+//React: 框架核心
+//ReactDOM: 渲染相关
+import React from 'react'
+import ReactDOM from 'react-dom'
+//入口文件，作为全局样式 
+import './index.css'
+//引入根组件App
+import App from './App'
+// 通过调用ReactDOM的render方法渲染App根组件到id为root的dom节点上
+ReactDOM.render (<App />,document.getElementById('root'))
