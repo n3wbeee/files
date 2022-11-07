@@ -1,25 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, { createRef } from "react";
 
-class InputComponent extends React.Component {
-	state = {
-		message: "This is Message", //状态
-	};
-	handleChange = (event) => {
-		this.setState({
-			message: event.target.value, //修改状态
-		});
+class Input extends React.Component {
+	msgRef = createRef();
+
+	getValue = () => {
+		//获取子组件的值
+		console.log(this.msgRef.current.value);
 	};
 
-	//UI渲染
+	changeValue = () => {
+		//修改子组件的值
+		this.msgRef.current.value = "hello";
+	};
+
 	render() {
 		return (
-			<input
-				type="text" //文本框
-				value={this.state.message} //绑定状态
-				onChange={this.handleChange} //绑定事件
-			/>
+			<>
+				<input type={"test"} ref={this.msgRef} />
+				<button onClick={this.getValue}>获取子组件的值</button>
+				<button onClick={this.changeValue}>修改子组件的值</button>
+			</>
 		);
 	}
 }
@@ -27,7 +29,7 @@ class InputComponent extends React.Component {
 function App() {
 	return (
 		<div>
-			<InputComponent /> {/*引入组件*/}
+			<Input /> {/*引入组件*/}
 		</div>
 	);
 }
