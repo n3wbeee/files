@@ -2,19 +2,24 @@
 
 import React from "react";
 
-class TestComponent extends React.Component {
-	// 通过state定义组件状态
+class InputComponent extends React.Component {
 	state = {
-		counter: 0,
+		message: "This is Message", //状态
 	};
+	handleChange = (event) => {
+		this.setState({
+			message: event.target.value, //修改状态
+		});
+	};
+
+	//UI渲染
 	render() {
 		return (
-			<button
-				onClick={() => {
-					this.setState({ counter: this.state.counter + 1 });
-				}}>
-				{this.state.counter}Click
-			</button>
+			<input
+				type="text" //文本框
+				value={this.state.message} //绑定状态
+				onChange={this.handleChange} //绑定事件
+			/>
 		);
 	}
 }
@@ -22,7 +27,7 @@ class TestComponent extends React.Component {
 function App() {
 	return (
 		<div>
-			<TestComponent />
+			<InputComponent /> {/*引入组件*/}
 		</div>
 	);
 }
