@@ -1,37 +1,33 @@
 /** @format */
 
-import React, { createRef } from "react";
+import React from "react";
 
-class Input extends React.Component {
-	msgRef = createRef();
+//子组件（函数）
+function SonFunc(props) {
+	//props内存放的是父组件传递过来的数据
+	//!!!注意：props是只读的，不能修改
+	return <div>测试--函数组件,{props.message}</div>;
+}
 
-	getValue = () => {
-		//获取子组件的值
-		console.log(this.msgRef.current.value);
-	};
-
-	changeValue = () => {
-		//修改子组件的值
-		this.msgRef.current.value = "hello";
-	};
-
+//子组件（类）
+class SonClass extends React.Component {
 	render() {
-		return (
-			<>
-				<input type={"test"} ref={this.msgRef} />
-				<button onClick={this.getValue}>获取子组件的值</button>
-				<button onClick={this.changeValue}>修改子组件的值</button>
-			</>
-		);
+		return <div>测试--类组件,{this.props.message}</div>;
 	}
 }
 
-function App() {
-	return (
-		<div>
-			<Input /> {/*引入组件*/}
-		</div>
-	);
+class App extends React.Component {
+	state = {
+		message: "hello world",
+	};
+	render() {
+		return (
+			<div>
+				<SonFunc message={this.state.message} />
+				<SonClass message={this.state.message} />
+			</div>
+		);
+	}
 }
 
 export default App;
