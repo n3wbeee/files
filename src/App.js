@@ -1,23 +1,39 @@
 /** @format */
 
-import React from "react";
+import React, { createContext } from "react";
 
-function SonFunc({ getSonMessage }) {
-	return <button onClick={() => getSonMessage("来自子组件")}>子组件</button>; //子组件向父组件传值
+const { Provider, Consumer } = createContext();
+
+function ComA() {
+	return (
+		<div>
+			this is ComA
+			<ComC />
+		</div>
+	);
+}
+
+function ComC() {
+	return (
+		<div>
+			<Consumer>{(value) => <span>{value}</span>}</Consumer>
+			ComC
+		</div>
+	);
 }
 
 class App extends React.Component {
-	getSonMessage = (message) => {
-		console.log(message);
+	state = {
+		message: "hello world",
 	};
-
 	render() {
 		return (
-			<>
-				<SonFunc getSonMessage={this.getSonMessage} />
-			</>
+			<Provider value={this.state.message}>
+				<ComA />
+			</Provider>
 		);
 	}
 }
 
 export default App;
+
