@@ -1,14 +1,16 @@
 /** @format */
 
-import React, { createContext } from "react";
+import React from "react";
 
 function ListItem({ item, delFunc }) {
+	// 渲染列表项
 	return (
 		<>
 			<h3>{item.name}</h3>
 			<p>{item.info}</p>
 			<p>{item.price}</p>
-			<button onClick={() => delFunc(item.id)}>删除</button>
+			<button onClick={() => delFunc(item.id)}>删除</button>{" "}
+			{/*通过传递的删除函数删除*/}
 		</>
 	);
 }
@@ -38,7 +40,7 @@ class App extends React.Component {
 	};
 	deleteListItem = (id) => {
 		this.setState({
-			list: this.state.list.filter((item) => item.id !== id),
+			list: this.state.list.filter((item) => item.id !== id), // 过滤掉id相同的项
 		});
 	};
 	render() {
@@ -46,9 +48,9 @@ class App extends React.Component {
 			<>
 				{this.state.list.map((item) => (
 					<ListItem
-						key={item.id}
-						item={item}
-						delFunc={this.deleteListItem}
+						key={item.id} // 为了避免警告，给每个列表项加上key
+						item={item} // 把每个列表项的数据传递给子组件
+						delFunc={this.deleteListItem} // 把删除函数传递给子组件
 					/>
 				))}
 			</>
