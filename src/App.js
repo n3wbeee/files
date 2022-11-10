@@ -8,6 +8,10 @@ import Layout from "./Layout";
 import Board from "./Board";
 import About from "./about";
 
+function NotFound() {
+	return <div>Not Found</div>;
+}
+
 function App() {
 	return (
 		// 声明路由
@@ -23,6 +27,7 @@ function App() {
 					<Route path="/board" element={<Board />} />
 				</Route>
 				<Route path="/about" element={<About />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	);
