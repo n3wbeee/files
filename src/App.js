@@ -1,37 +1,17 @@
 /** @format */
 
+import { counterStore } from "./store/counter.js";
+import { observer } from "mobx-react";
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
-import Article from "./Article";
-import Layout from "./Layout";
-import Board from "./Board";
-import About from "./about";
-
-function NotFound() {
-	return <div>Not Found</div>;
-}
 
 function App() {
 	return (
-		// 声明路由
-		<BrowserRouter>
-			{/* 声明路由组件,to属性是路由地址*/}
-			<Link to="/">Layout</Link>
-			<Link to="/Article">Article</Link>
-			{/*路由出口: 路由对应的组件会在这里进行渲染*/}
-			{/*path为路径,element为组件，需要成对出现*/}
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route path="/article" element={<Article />} />
-					<Route path="/board" element={<Board />} />
-				</Route>
-				<Route path="/about" element={<About />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-		</BrowserRouter>
+		<>
+			{counterStore.count}
+			<button onClick={counterStore.addCount}>+1</button>
+		</>
 	);
 }
 
-export default App;
+export default observer(App);
 
